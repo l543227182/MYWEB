@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+
+
+	<!-- 改变常量访问方式 -->
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.multipart.maxSize" value="51699500" />
+	<package name="p1" extends="struts-default">
+
+		<!-- 首页 -->
+		<action name="index" class="cn.lc.action.IndexAction">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+       <!--首页公告-->
+       <action name="NoticePage" class="cn.lc.action.IndexAction"  method="toNoticePage">
+       <result name="success">/WEB-INF/personal/IndexNotice.jsp</result>
+       </action>
+		<!-- 注销 -->
+		<action name="logout" class="cn.lc.action.LogoutAction">
+			<result name="success" type="redirectAction">index</result>
+			<result name="error" type="redirectAction">index</result>
+		</action>
+
+		<!-- 登录 -->
+		<action name="login" class="cn.lc.action.LoginAction" method="login">
+			<result name="redirect" type="redirectAction">index</result>
+			<result name="input" type="dispatcher">/WEB-INF/jsp/index.jsp</result>
+		</action>
+
+		<!-- 注册 -->
+		<action name="register" class="cn.lc.action.RegisterAction">
+			<result name="input">/for/register.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/jsp/sendCode.jsp</result>
+		</action>
+
+		<!-- ajax用户名在注册时检测是否已经被注册 -->
+		<action name="findUser" class="cn.lc.action.FindUserAction">
+			<result name="success" type="dispatcher">/for/register.jsp</result>
+		</action>
+
+		<!-- 注册时验证码验证 -->
+		<action name="Isvalidation" class="cn.lc.action.RegisterAction"
+			method="Isvalidation">
+			<result name="success" type="redirectAction">index</result>
+			<result name="error">/WEB-INF/jsp/InputCode.jsp</result>
+			<result name="input">/WEB-INF/jsp/InputCode.jsp</result>
+		</action>
+
+		<!--向注册人发送邮件 -->
+		<action name="sendUseremail" class="cn.lc.action.sendUseremail">
+			<result name="success">/WEB-INF/jsp/InputCode.jsp</result>
+		</action>
+
+		<!-- 进入个人空间是检验是否登录 -->
+		<action name="personalSpace" class="cn.lc.action.personalSpace">
+			<result name="success">/WEB-INF/personal/personalSpace.jsp
+			</result>
+			<result name="loginTospace" type="dispatcher">/WEB-INF/personal/LoginTOspace.jsp
+			</result>
+		</action>
+
+		<!-- 更新文件信息 -->
+		<action name="changeFile_*" class="cn.lc.action.changeFileAction"
+			method="{1}">
+			<result name="error" type="redirectAction">index</result>
+			<result name="success">/WEB-INF/personal/changeFile.jsp</result>
+			<result name="changeFile">/WEB-INF/personal/changeFilepage.jsp</result>
+			<result name="update">/WEB-INF/personal/upFileMessage.jsp</result>
+		</action>
+
+		<!-- 个人资料修改 -->
+		<action name="changeData_*" class="cn.lc.action.changeData"
+			method="{1}">
+			<result name="toPage">/WEB-INF/personal/changeData.jsp</result>
+			<result name="success">/WEB-INF/personal/upFileMessage.jsp</result>
+		</action>
+
+		<!-- 文件上传处理 -->
+		<action name="fileup" class="cn.lc.action.upFileAction" method="UpFile">
+			<result name="upfile">/WEB-INF/personal/upFileMessage.jsp</result>
+			<result name="error">/WEB-INF/personal/upFileMessage.jsp</result>
+			<result name="input">/WEB-INF/personal/upFileMessage.jsp</result>
+		</action>
+
+		<!-- 文件删除 -->
+		<action name="deletefile" class="cn.lc.action.deleteFileAction">
+			<result name="success">/WEB-INF/personal/upFileMessage.jsp
+			</result>
+		</action>
+
+		<!-- 文件下载 -->
+		<!--<action name="filedown" class="cn.lc.action.FileAction" method="downFile"> 
+			<result name="input">/Test.jsp</result> <result name="success">/Test.jsp</result> 
+			<result name="downFile" type="stream"> <param name="inputName">image</param> 
+			<param name="contentType">application/octet-stream</param> <param name="contentDisposition">attachment;filename=${fileName}</param> 
+			<param name="contentLength">${fileSize}</param> </result> </action> -->
+		<!-- 文件下载 -->
+		<action name="filedown" class="cn.lc.action.downFileAction"
+			method="downFile">
+			<result name="input">/WEB-INF/personal/upFileMessage.jsp</result>
+			<result name="downFile" type="stream">
+				<param name="inputName">image</param>
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="contentLength">${fileSize}</param>
+			</result>
+		</action>
+
+		<!-- 文件中心 -->
+		<action name="fileCenter" class="cn.lc.action.FileCenterAction">
+			<result name="success">/WEB-INF/personal/fileCenter.jsp</result>
+			<result name="userNull" type="redirectAction">index</result>
+		</action>
+
+		<!--跳转到文件上传页面 -->
+		<action name="upFile" class="cn.lc.action.FileCenterAction"
+			method="upFile">
+			<result name="success">/WEB-INF/personal/upFile.jsp</result>
+			<result name="userNull" type="redirectAction">index</result>
+		</action>
+
+		<!--转到文件上传记录 -->
+		<action name="fileUpRecord" class="cn.lc.action.FileCenterAction"
+			method="toFileRecord">
+			<result name="success">/WEB-INF/jsp/fileUpRecord.jsp</result>
+			<result name="userNull" type="redirectAction">index</result>
+		</action>
+
+
+		<!-- 显示文章 -->
+		<action name="toArticlePage" class="cn.lc.action.personalSpace"
+			method="toArticlePage">
+			<result name="toArticlePage">/WEB-INF/personal/showArticle.jsp</result>
+		</action>
+
+		<!--保存文章 -->
+	<action name="saveArticle" class="cn.lc.action.personalSpace" method="addArticle">
+	 <result name="success">/WEB-INF/personal/message.jsp</result>
+	 <result name="error" type="redirectAction">index</result>
+	</action>
+	
+	<!-- 跳到写文章页面 -->
+	<action name="toWritePage"   class="cn.lc.action.personalSpace" method="toWritePage">
+	<result name="error" type="redirectAction">index</result>
+	<result name="toWritePage">/WEB-INF/personal/writeArticle.jsp</result>
+	</action>
+	<!-- 删除文章 -->
+	<action name="deleteArticle"  class="cn.lc.action.personalSpace" method="deleteArticle">
+	  <result name="error" type="redirectAction">index</result>
+	 <result name="success"> /WEB-INF/personal/message.jsp</result>
+	</action>
+	<!-- 公告中心-->
+	<action name="publicNotice" class="cn.lc.action.publicNotice">
+	<result name="success">/WEB-INF/personal/MyNotice.jsp</result>
+	<result name="error" type="redirectAction">index</result>
+	</action>
+	
+	<!--转向写公告page-->
+	<action name="WriteNotice"  class="cn.lc.action.publicNotice" method="toPage">
+	<result name="success">/WEB-INF/personal/WriteNotice.jsp</result>
+	<result name="error" type="redirectAction">index</result>
+	</action>
+	
+	<!--保存用户公告 -->
+	<action name="addNotice" class="cn.lc.action.publicNotice" method="addNotice">
+	<result name="success">/WEB-INF/personal/message.jsp</result>
+	<result name="error" type="redirectAction">index</result>
+	</action>
+	<!--用户删除用户 -->
+	<action name="deleteNotice"  class="cn.lc.action.publicNotice" method="deleteNotice"> 
+	<result name="success">/WEB-INF/personal/message.jsp</result>
+	<result name="error" type="redirectAction">index</result>
+	</action>
+	
+	<!--查看公告-->
+	<action name="LookUpNotice" class="cn.lc.action.publicNotice" method="LookUpNotice">
+	<result name="success">/WEB-INF/personal/LookUpNotice.jsp</result>
+	<result name="error" type="redirectAction">index</result>
+	</action>
+	</package>
+</struts>

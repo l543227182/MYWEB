@@ -1,0 +1,175 @@
+/*rocdu#tencent.com 2013.11.20*/
+ 
+/***********基础样式*************/
+ 
+/* reset */
+body,div,p,form,iframe,object,ul,ol,li,dl,dt,dd,span,em,strong,img,table,td,th,textarea,button,input,select,h1,h2,h3,h4,h5,h6{margin:0 auto;padding:0;border:0;font:300 12px/14px 'Tahoma';color:#333;}li{list-style:none;}em{font-style:normal;}strong{font-weight:bold;}h1,h2,h3,h4,h5,h6{font-weight:normal;}
+
+/* link */
+a,a:hover{color:#000;text-decoration:none;}
+a:focus{outline:none;}
+
+/* float */
+.left,.center,.l,.c{float:left;}
+.right,.r{float:right;}
+
+/* clearFloat */
+.clear,.area,.pg,.pt,.tab{zoom:1;}
+.clear:after,.area:after,.pg:after,.pt:after,.tab:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+/* hidden */
+.hidden{display:none;}
+
+/* show */
+.show{display:block;}
+
+/* pageBackground */
+body{background:#f2f2f2;}
+
+/* fontSizeBug */
+body{
+	 font-size:100%; 
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+}
+
+/* 左右文字对齐 */
+.textJustify{
+	text-align:justify!important;
+	text-justify:inter-ideograph!important;
+}
+
+
+/***********布局*************/
+
+.layoutA{
+	width:100%;
+	position:relative;	
+}
+.layoutA .mainBox{
+	width:1200px;
+	margin:0 auto;
+	position:relative;
+}
+.layoutA .mainBox .left{
+	width:795px;
+}
+.layoutA .mainBox .right{
+	width:367px;
+}
+
+
+
+
+
+/* topBtn */	
+.gotoTopBtn_mod{
+	width:54px;
+	height:54px;
+	z-index:9;
+}
+.gotoTopBtn_mod a{
+	display:block;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	font:12px/500px 'arial';
+	background-position:0 -59px;
+}
+.gotoTopBtn_mod a:hover{
+	background-position:-53px -59px;
+}
+.gotoTopBtn_mod a:focus{
+   	outline:medium none;
+}
+
+/* topBarBg */
+.topBarBg{	
+	background-color:#000;
+	height:180px;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	font:12px/500px 'Tahoma';
+	overflow:hidden;
+	text-align:center;
+}
+.topBarBg .bg{
+	width:100%;
+	height:180px;
+	visibility:hidden;
+	filter:alpha(opacity=0);
+	opacity:0;
+	background-repeat:no-repeat;
+	background-position:center top;
+}
+.topBarBg img{
+	display:none;
+	margin:0 auto;
+}
+
+/* weather_mod */
+.weather_mod{
+	height:150px;
+	padding-top:50px;
+	width:100%;
+	position:relative;
+}
+.weather_mod .bg{	
+	border-radius:10px;
+	padding:10px 10px 15px;
+	display:inline-block;
+	height:72px;
+	overflow:hidden;
+}
+.weather_mod *{
+	color:#fff;
+}
+.weather_mod .weatherBox{
+	margin-bottom:15px;
+}
+.weather_mod .tipsTxt{	
+	color:#cacaca;
+	font:12px/14px 'Tahoma';
+	width:0;
+	height:14px;
+	overflow:hidden;
+	float:left;
+}
+.weather_mod .tipsTxtShow{
+	width:100%;
+	transition:all 600ms linear 0s;
+	-webkit-transition:all 600ms linear 0s;
+	-moz-transition:all 600ms linear 0s;
+	-o-transition:all 600ms linear 0s;
+	-ms-transition:all 600ms linear 0s;	
+}
+.weather_mod .weatherDate{
+	float:left;
+	padding-top:18px;
+	margin-right:20px;
+}
+.weather_mod .weatherDate span{
+	font:16px/18px 'Microsoft YaHei';	
+}
+.weather_mod .weatherData{
+	float:left;
+}
+.weather_mod .weatherData .weatherTemperature{
+	float:left;
+	margin-right:12px;
+}
+.weather_mod .weatherData .weatherTemperature,
+.weather_mod .weatherData .weatherTemperature span{
+	font:600 40px/42px 'Microsoft YaHei';
+}
+.weather_mod .weatherData .weatherMoreInfo{
+	float:left;
+	font:14px/22px 'Microsoft YaHei';
+}
+.weather_mod .weatherData .weatherMoreInfo span{
+	font:14px/22px 'Microsoft YaHei';
+}
+
+

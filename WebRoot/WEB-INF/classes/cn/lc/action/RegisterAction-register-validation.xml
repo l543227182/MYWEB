@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+    "-//Apache Struts//XWork Validator 1.0.3//EN"
+    "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">  
+<validators>
+             <field name="user.username">
+                    <field-validator type="requiredstring">
+                        <message>用户名不能为空！</message> 
+                    </field-validator>
+                    <field-validator type="stringlength">
+                        <param name="minLength">5</param>
+                        <param name="maxLength">11</param>
+                        <message>长度必须3-6位之间！</message>
+                    </field-validator>
+                </field>
+                <field name="user.password">
+                 <field-validator type="requiredstring">
+                  <message>密码不能为空</message>
+                 </field-validator>
+                 <field-validator type="stringlength">
+                  <param name="minLength">6</param>
+                  <param name="maxLength">16</param>
+                  <message>密码长度必须为${minLength}~${maxLength}</message>
+                 </field-validator>
+                </field>
+                 <field name="user.name">
+                    <field-validator type="requiredstring">
+                        <message>名字不能为空！</message> 
+                    </field-validator>                  
+                </field>
+               <field name="user.gender">
+                    <field-validator type="requiredstring">
+                        <message>性别不能为空！</message> 
+                    </field-validator>
+                </field> 
+                <field name="user.cellphone">
+                    <field-validator type="requiredstring">
+                        <message>电话不能为空！</message> 
+                    </field-validator>
+                </field>
+              
+                <field name="user.email">
+                    <field-validator type="requiredstring">
+                        <message>email不能为空！</message> 
+                    </field-validator>
+                    <field-validator type="email">
+                        <message>邮箱格式不正确！</message> 
+                    </field-validator>
+                </field>
+                  
+</validators>   
